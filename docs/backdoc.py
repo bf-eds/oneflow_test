@@ -2509,7 +2509,7 @@ https://github.com/chibisov/backdoc
             top: 0;
             left: 0;
             bottom: 0;
-            width: 230px;
+            width: 330px;
             overflow-y: auto;
             overflow-x: hidden;
             padding: 15px 0 30px 30px;
@@ -2561,7 +2561,7 @@ https://github.com/chibisov/backdoc
             height: 44px;
             background: #000;
             background: rgba(0,0,0,0.7);
-            margin-left: 230px;
+            margin-left: 330px;
         }
         .toggle_sidebar_button:hover {
             background: rgba(0,0,0,1);
@@ -2580,7 +2580,7 @@ https://github.com/chibisov/backdoc
 
         .main_container {
             width: 100%;
-            padding-left: 260px;
+            padding-left: 360px;
             margin: 30px;
             margin-left: 0px;
             padding-right: 30px;
@@ -2618,7 +2618,7 @@ https://github.com/chibisov/backdoc
         }
 
         .main_container {
-            width: 840px;
+            width: 1040px;
         }
 
         .main_container p, ul, pre {
@@ -2709,11 +2709,11 @@ https://github.com/chibisov/backdoc
         }
 
         .force_show_sidebar .main_container {
-            padding-left: 260px;
+            padding-left: 360px;
         }
 
         .force_show_sidebar .toggle_sidebar_button{
-            margin-left: 230px;
+            margin-left: 330px;
         }
     </style>
 
