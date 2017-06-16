@@ -819,6 +819,8 @@ class Markdown(object):
             text = self._prepare_pyshell_blocks(text)
         if "wiki-tables" in self.extras:
             text = self._do_wiki_tables(text)
+        if "tables" in self.extras:
+            text = self._do_tables(text)
 
         text = self._do_code_blocks(text)
 
@@ -858,6 +860,78 @@ class Markdown(object):
             """ % less_than_tab, re.M | re.X)
 
         return _pyshell_block_re.sub(self._pyshell_block_sub, text)
+
+    def _table_sub(self, match):
+        trim_space_re = '^[ \t\n]+|[ \t\n]+$'
+        trim_bar_re = '^\||\|$'
+        split_bar_re = '^\||(?<!\\\\)\|'
+        escape_bar_re = '\\\\\|'
+
+        head, underline, body = match.groups()
+
+        # Determine aligns for columns.
+        cols = [re.sub(escape_bar_re, '|', cell.strip()) for cell in re.split(split_bar_re, re.sub(trim_bar_re, "", re.sub(trim_space_re, "", underline)))]
+        align_from_col_idx = {}
+        for col_idx, col in enumerate(cols):
+            if col[0] == ':' and col[-1] == ':':
+                align_from_col_idx[col_idx] = ' align="center"'
+            elif col[0] == ':':
+                align_from_col_idx[col_idx] = ' align="left"'
+            elif col[-1] == ':':
+                align_from_col_idx[col_idx] = ' align="right"'
+
+        # thead
+        hlines = ['<table%s>' % self._html_class_str_from_tag('table'), '<thead>', '<tr>']
+        cols = [re.sub(escape_bar_re, '|', cell.strip()) for cell in re.split(split_bar_re, re.sub(trim_bar_re, "", re.sub(trim_space_re, "", head)))]
+        for col_idx, col in enumerate(cols):
+            hlines.append('  <th%s>%s</th>' % (
+                align_from_col_idx.get(col_idx, ''),
+                self._run_span_gamut(col)
+            ))
+        hlines.append('</tr>')
+        hlines.append('</thead>')
+
+        # tbody
+        hlines.append('<tbody>')
+        for line in body.strip('\n').split('\n'):
+            hlines.append('<tr>')
+            cols = [re.sub(escape_bar_re, '|', cell.strip()) for cell in re.split(split_bar_re, re.sub(trim_bar_re, "", re.sub(trim_space_re, "", line)))]
+            for col_idx, col in enumerate(cols):
+                hlines.append('  <td%s>%s</td>' % (
+                    align_from_col_idx.get(col_idx, ''),
+                    self._run_span_gamut(col)
+                ))
+            hlines.append('</tr>')
+        hlines.append('</tbody>')
+        hlines.append('</table>')
+
+        return '\n'.join(hlines) + '\n'
+
+    def _do_tables(self, text):
+        """Copying PHP-Markdown and GFM table syntax. Some regex borrowed from
+        https://github.com/michelf/php-markdown/blob/lib/Michelf/Markdown.php#L2538
+        """
+        less_than_tab = self.tab_width - 1
+        table_re = re.compile(r'''
+                (?:(?<=\n\n)|\A\n?)             # leading blank line
+                ^[ ]{0,%d}                      # allowed whitespace
+                (.*[|].*)  \n                   # $1: header row (at least one pipe)
+                ^[ ]{0,%d}                      # allowed whitespace
+                (                               # $2: underline row
+                    # underline row with leading bar
+                    (?:  \|\ *:?-+:?\ *  )+  \|?  \n
+                    |
+                    # or, underline row without leading bar
+                    (?:  \ *:?-+:?\ *\|  )+  (?:  \ *:?-+:?\ *  )?  \n
+                )
+                (                               # $3: data rows
+                    (?:
+                        ^[ ]{0,%d}(?!\ )         # ensure line begins with 0 to less_than_tab spaces
+                        .*\|.*  \n
+                    )+
+                )
+            ''' % (less_than_tab, less_than_tab, less_than_tab), re.M | re.X)
+        return table_re.sub(self._table_sub, text)
 
     def _wiki_table_sub(self, match):
         ttext = match.group(0).strip()
@@ -2403,6 +2477,18 @@ https://github.com/chibisov/backdoc
             margin: 0;
         }
 
+        table {
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
         .anchor {
             cursor: pointer;
         }
@@ -2861,7 +2947,7 @@ class BackDoc(object):
 
 if __name__ == '__main__':
     BackDoc(
-        markdown_converter=Markdown(extras=['toc']), 
+        markdown_converter=Markdown(extras=['toc', 'tables']), 
         template_html=template_html,
         stdin=sys.stdin,
         stdout=sys.stdout
