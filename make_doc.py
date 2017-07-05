@@ -13,7 +13,7 @@ file_pirit2f = open("documentation_pirit2f.md", 'w', encoding='utf8')
 file_fm16 = open("documentation_fm16.md", 'w', encoding='utf8')
 
 lines = []
-with open("index.md", 'r', encoding="utf8") as file:
+with open("documentation.md", 'r', encoding="utf8") as file:
     pirit2fOnly = False
     fm16Only = False
     for line in file:
