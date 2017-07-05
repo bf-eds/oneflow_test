@@ -833,6 +833,13 @@ https://github.com/chibisov/backdoc
     <li><a href="#vhodnyie-parametryi-60">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-60">Ответные параметры</a></li>
   </ul></li>
+  <li><a href="#proverka-dostupnosti-servera-ofd-0xa5">Проверка доступности сервера ОФД (0xA5)</a>
+  <ul>
+    <li><a href="#opisanie-61">Описание</a></li>
+    <li><a href="#vhodnyie-parametryi-61">Входные параметры</a></li>
+    <li><a href="#otvetnyie-parametryi-61">Ответные параметры</a></li>
+    <li><a href="#dopolnitelnaya-informatsiya-16">Дополнительная информация</a></li>
+  </ul></li>
   <li><a href="#nastrojki-kkt">Настройки ККТ</a>
   <ul>
     <li><a href="#1-parametryi-pu-bitovaya-maska">1 - Параметры ПУ (битовая маска)</a></li>
@@ -3870,6 +3877,47 @@ https://github.com/chibisov/backdoc
 <h2 id="otvetnyie-parametryi-60">Ответные параметры</h2>
 
 <p>Нет</p>
+
+<h1 id="proverka-dostupnosti-servera-ofd-0xa5">Проверка доступности сервера ОФД (0xA5)</h1>
+
+<h2 id="opisanie-61">Описание</h2>
+
+<p>Эта команда позволяет проверить доступность сервера ОФД путём попытки установки tcp соединения с ним.</p>
+
+<h2 id="vhodnyie-parametryi-61">Входные параметры</h2>
+
+<p>Нет</p>
+
+<h2 id="otvetnyie-parametryi-61">Ответные параметры</h2>
+
+<ul>
+<li>(Целое число) Статус проверки</li>
+</ul>
+
+<h2 id="dopolnitelnaya-informatsiya-16">Дополнительная информация</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Значение</th>
+  <th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>Cервер не доступен</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Cервер доступен</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Не установлены настройки сервера (ip адрес или порт)</td>
+</tr>
+</tbody>
+</table>
 
 <h1 id="nastrojki-kkt">Настройки ККТ</h1>
 

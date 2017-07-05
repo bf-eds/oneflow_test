@@ -809,35 +809,42 @@ https://github.com/chibisov/backdoc
     <li><a href="#vhodnyie-parametryi-56">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-56">Ответные параметры</a></li>
   </ul></li>
-  <li><a href="#ochistit-skl-0xv0">Очистить СКЛ (0xВ0)</a>
+  <li><a href="#proverka-dostupnosti-servera-ofd-0xa5">Проверка доступности сервера ОФД (0xA5)</a>
   <ul>
     <li><a href="#opisanie-57">Описание</a></li>
     <li><a href="#vhodnyie-parametryi-57">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-57">Ответные параметры</a></li>
+    <li><a href="#dopolnitelnaya-informatsiya-16">Дополнительная информация</a></li>
   </ul></li>
-  <li><a href="#raspechatat-dokumentyi-iz-skl-0xv1">Распечатать документы из СКЛ (0xВ1)</a>
+  <li><a href="#ochistit-skl-0xv0">Очистить СКЛ (0xВ0)</a>
   <ul>
     <li><a href="#opisanie-58">Описание</a></li>
     <li><a href="#vhodnyie-parametryi-58">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-58">Ответные параметры</a></li>
   </ul></li>
-  <li><a href="#raspechatat-dannyie-po-smenam-iz-skl-0xv2">Распечатать данные по сменам из СКЛ (0xВ2)</a>
+  <li><a href="#raspechatat-dokumentyi-iz-skl-0xv1">Распечатать документы из СКЛ (0xВ1)</a>
   <ul>
     <li><a href="#opisanie-59">Описание</a></li>
     <li><a href="#vhodnyie-parametryi-59">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-59">Ответные параметры</a></li>
   </ul></li>
-  <li><a href="#raspechatat-dannyie-po-datam-iz-skl-0xv3">Распечатать данные по датам из СКЛ (0xВ3)</a>
+  <li><a href="#raspechatat-dannyie-po-smenam-iz-skl-0xv2">Распечатать данные по сменам из СКЛ (0xВ2)</a>
   <ul>
     <li><a href="#opisanie-60">Описание</a></li>
     <li><a href="#vhodnyie-parametryi-60">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-60">Ответные параметры</a></li>
   </ul></li>
-  <li><a href="#poluchit-dannyie-po-skl-0xv4">Получить данные по СКЛ(0xВ4)</a>
+  <li><a href="#raspechatat-dannyie-po-datam-iz-skl-0xv3">Распечатать данные по датам из СКЛ (0xВ3)</a>
   <ul>
     <li><a href="#opisanie-61">Описание</a></li>
     <li><a href="#vhodnyie-parametryi-61">Входные параметры</a></li>
     <li><a href="#otvetnyie-parametryi-61">Ответные параметры</a></li>
+  </ul></li>
+  <li><a href="#poluchit-dannyie-po-skl-0xv4">Получить данные по СКЛ(0xВ4)</a>
+  <ul>
+    <li><a href="#opisanie-62">Описание</a></li>
+    <li><a href="#vhodnyie-parametryi-62">Входные параметры</a></li>
+    <li><a href="#otvetnyie-parametryi-62">Ответные параметры</a></li>
   </ul></li>
   <li><a href="#nastrojki-kkt">Настройки ККТ</a>
   <ul>
@@ -3742,11 +3749,11 @@ https://github.com/chibisov/backdoc
 
 <p>Нет</p>
 
-<h1 id="ochistit-skl-0xv0">Очистить СКЛ (0xВ0)</h1>
+<h1 id="proverka-dostupnosti-servera-ofd-0xa5">Проверка доступности сервера ОФД (0xA5)</h1>
 
 <h2 id="opisanie-57">Описание</h2>
 
-<p>Эта команда удаляет все данные в СКЛ.</p>
+<p>Эта команда позволяет проверить доступность сервера ОФД путём попытки установки tcp соединения с ним.</p>
 
 <h2 id="vhodnyie-parametryi-57">Входные параметры</h2>
 
@@ -3754,73 +3761,114 @@ https://github.com/chibisov/backdoc
 
 <h2 id="otvetnyie-parametryi-57">Ответные параметры</h2>
 
+<ul>
+<li>(Целое число) Статус проверки</li>
+</ul>
+
+<h2 id="dopolnitelnaya-informatsiya-16">Дополнительная информация</h2>
+
+<table>
+<thead>
+<tr>
+  <th>Значение</th>
+  <th>Статус</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+  <td>0</td>
+  <td>Cервер не доступен</td>
+</tr>
+<tr>
+  <td>1</td>
+  <td>Cервер доступен</td>
+</tr>
+<tr>
+  <td>2</td>
+  <td>Не установлены настройки сервера (ip адрес или порт)</td>
+</tr>
+</tbody>
+</table>
+
+<h1 id="ochistit-skl-0xv0">Очистить СКЛ (0xВ0)</h1>
+
+<h2 id="opisanie-58">Описание</h2>
+
+<p>Эта команда удаляет все данные в СКЛ.</p>
+
+<h2 id="vhodnyie-parametryi-58">Входные параметры</h2>
+
+<p>Нет</p>
+
+<h2 id="otvetnyie-parametryi-58">Ответные параметры</h2>
+
 <p>Нет</p>
 
 <h1 id="raspechatat-dokumentyi-iz-skl-0xv1">Распечатать документы из СКЛ (0xВ1)</h1>
 
-<h2 id="opisanie-58">Описание</h2>
+<h2 id="opisanie-59">Описание</h2>
 
 <p>Эта команда позволяет найти и распечатать документы из СКЛ, в заданном диапазоне сквозных номеров документа. Если конечный номер документа равен нулю или отсутствует, печатается только один документ по начальному номеру.</p>
 
-<h2 id="vhodnyie-parametryi-58">Входные параметры</h2>
+<h2 id="vhodnyie-parametryi-59">Входные параметры</h2>
 
 <ul>
 <li>(Целое число) Начальный номер документа</li>
 <li>(Целое число) Конечный номер документа</li>
 </ul>
 
-<h2 id="otvetnyie-parametryi-58">Ответные параметры</h2>
+<h2 id="otvetnyie-parametryi-59">Ответные параметры</h2>
 
 <p>Нет</p>
 
 <h1 id="raspechatat-dannyie-po-smenam-iz-skl-0xv2">Распечатать данные по сменам из СКЛ (0xВ2)</h1>
 
-<h2 id="opisanie-59">Описание</h2>
+<h2 id="opisanie-60">Описание</h2>
 
 <p>Эта команда позволяет найти и распечатать документы из СКЛ, в заданном диапазоне смен. Если конечный номер смены равен нулю или отсутствует, печатаются только за один одну смену по начальному номеру.</p>
 
-<h2 id="vhodnyie-parametryi-59">Входные параметры</h2>
+<h2 id="vhodnyie-parametryi-60">Входные параметры</h2>
 
 <ul>
 <li>(Целое число) Начальный номер смены</li>
 <li>(Целое число) Конечный номер смены</li>
 </ul>
 
-<h2 id="otvetnyie-parametryi-59">Ответные параметры</h2>
+<h2 id="otvetnyie-parametryi-60">Ответные параметры</h2>
 
 <p>Нет</p>
 
 <h1 id="raspechatat-dannyie-po-datam-iz-skl-0xv3">Распечатать данные по датам из СКЛ (0xВ3)</h1>
 
-<h2 id="opisanie-60">Описание</h2>
+<h2 id="opisanie-61">Описание</h2>
 
 <p>Эта команда позволяет найти и распечатать документы из СКЛ, в заданном диапазоне дат.</p>
 
-<h2 id="vhodnyie-parametryi-60">Входные параметры</h2>
+<h2 id="vhodnyie-parametryi-61">Входные параметры</h2>
 
 <ul>
 <li>(Дата) Начальная дата</li>
 <li>(Дата) Конечная дата.</li>
 </ul>
 
-<h2 id="otvetnyie-parametryi-60">Ответные параметры</h2>
+<h2 id="otvetnyie-parametryi-61">Ответные параметры</h2>
 
 <p>Нет</p>
 
 <h1 id="poluchit-dannyie-po-skl-0xv4">Получить данные по СКЛ(0xВ4)</h1>
 
-<h2 id="opisanie-61">Описание</h2>
+<h2 id="opisanie-62">Описание</h2>
 
 <p>Эта команда позволяет получать различную информацию по СКЛ. Тип и количество возвращаемых данных зависит от значения передаваемого параметра – номер запроса. Тип и количество возвращаемых данных зависит от значения номера запроса.</p>
 
-<h2 id="vhodnyie-parametryi-61">Входные параметры</h2>
+<h2 id="vhodnyie-parametryi-62">Входные параметры</h2>
 
 <ul>
 <li>(Целое число) Номер запроса</li>
 <li>(Целое число) Параметры запроса</li>
 </ul>
 
-<h2 id="otvetnyie-parametryi-61">Ответные параметры</h2>
+<h2 id="otvetnyie-parametryi-62">Ответные параметры</h2>
 
 <ul>
 <li>(Целое число) Номер запроса</li>
